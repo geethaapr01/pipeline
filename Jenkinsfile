@@ -19,9 +19,9 @@ pipeline {
       }
     }
 
-    stage('UNIT TESTING') {
+    stage('QUALITY CHECK') {
       parallel {
-        stage('QUALITY CHECK') {
+        stage('UNIT TESTING') {
           steps {
             echo 'Unit testing'
           }
@@ -33,21 +33,27 @@ pipeline {
           }
         }
 
-        stage('SONAR REPORT') {
+        stage('SONAR') {
           steps {
             echo 'Sonar reporting...'
           }
         }
 
-        stage('HTML REPORT') {
+        stage('HTML') {
           steps {
             echo 'Code quality Check...'
           }
         }
 
-        stage('Cucumber Report') {
+        stage('CUCUMBER') {
           steps {
             echo 'Cucumber reporting...'
+          }
+        }
+
+        stage('JACOCO') {
+          steps {
+            echo 'Jacoco reporting...'
           }
         }
 
