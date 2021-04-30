@@ -20,20 +20,37 @@ pipeline {
     }
 
     stage('UNIT TESTING') {
-      steps {
-        echo 'Unit testing'
-      }
-    }
+      parallel {
+        stage('QUALITY CHECK') {
+          steps {
+            echo 'Unit testing'
+          }
+        }
 
-    stage('CODE COVERAGE') {
-      steps {
-        echo 'Code coverage'
-      }
-    }
+        stage('COVERAGE') {
+          steps {
+            echo 'Code Coverage...'
+          }
+        }
 
-    stage('SONAR REPORT') {
-      steps {
-        echo 'Sonar'
+        stage('SONAR REPORT') {
+          steps {
+            echo 'Sonar reporting...'
+          }
+        }
+
+        stage('HTML REPORT') {
+          steps {
+            echo 'Code quality Check...'
+          }
+        }
+
+        stage('Cucumber Report') {
+          steps {
+            echo 'Cucumber reporting...'
+          }
+        }
+
       }
     }
 
