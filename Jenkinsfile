@@ -72,6 +72,11 @@ pipeline {
       }
     }
 
+	stage('DOWNLOAD') {
+      steps {
+        echo 'Artifact Downloading...'
+      }
+    }
     stage('DEV-DEPLOY') {
       parallel {
         stage('DEV-DEPLOY') {
