@@ -80,24 +80,52 @@ pipeline {
           }
         }
 
+        stage('DEV-TESTING') {
+          steps {
+            echo 'Testing in DEV environment '
+          }
+        }
+
+      }
+    }
+
+    stage('INT-DEPLOY') {
+      parallel {
         stage('INT-DEPLOY') {
           steps {
-            echo 'Deploying in INT environment '
+            echo 'Deploying in INT'
           }
         }
 
+        stage('INT TESTING') {
+          steps {
+            echo 'Testing in INT environment '
+          }
+        }
+
+      }
+    }
+
+    stage('UAT-DEPLOY') {
+      parallel {
         stage('UAT-DEPLOY') {
           steps {
-            echo 'Deploying in UAT Environment '
+            echo 'Deploying in UAT'
           }
         }
 
-        stage('PRO-DEPLOY') {
+        stage('UAT-TESTING') {
           steps {
-            echo 'Deploying in PRO environment '
+            echo 'Testing in UAT environment '
           }
         }
 
+      }
+    }
+
+    stage('PRO-DEPLOY') {
+      steps {
+        echo 'Deploying in PRO'
       }
     }
 
